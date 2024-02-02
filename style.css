@@ -1,0 +1,153 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap');
+
+* {
+    font-family: 'Roboto', sans-serif;
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+.container {
+    padding: 10px;
+}
+
+body {
+    background-color: black;
+    color: white;
+}
+
+.left {
+    width: 25vw;
+
+}
+
+.right {
+    width: 75vw;
+
+}
+
+.rightmost {
+    min-height: 100%;
+
+}
+
+.home ul li {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    list-style: none;
+    padding-top: 14px;
+    font-weight: bold;
+}
+
+.home ul li img {
+    width: 25px;
+}
+
+
+.library {
+    min-height: 80vh;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.heading {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-weight: bold;
+    padding: 23px 14px;
+    font-size: 13px;
+
+}
+
+.heading img {
+    width: 25px;
+}
+
+.footer {
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 10px;
+    color: grey;
+    gap: 13px;
+    padding-bottom: 10px;
+    font-size: 11px;
+}
+
+.footer a {
+    color: grey;
+
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    background-color: rgb(190, 173, 173);
+}
+
+.header>* {
+    padding: 20px;
+
+}
+
+.spotifyPlaylists {
+    padding: 16px;
+}
+
+.cardContainer {
+    display: flex;
+    gap: 10px;
+    flex-wrap: warp;
+    margin: 30px;
+}
+
+.spotifyPlaylists .card {
+    width: 200px;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #181818;
+    position: relative;
+    transition: background-color .3s ease;
+}
+
+.card>* {
+    padding-top: 10px;
+
+}
+
+.spotifyPlaylists .card img {
+    width: 100%;
+
+}
+
+.play {
+    width: 50px;
+    height: 50px;
+    background-color: #1FDF64;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-left: 3px;
+    padding-bottom: 10px;
+    position: absolute;
+    right: 17px;
+    top: 150px;
+    opacity: 0;
+    transition: opacity 0.4s ease-out, top 0.4s ease-out;
+
+
+}
+
+.play:hover {
+    top: 140px;
+    opacity: 1;
+}
+
+..card :hover {
+
+    background: #272727;
+}
