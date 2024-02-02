@@ -23,11 +23,13 @@ body {
 
 .right {
     width: 75vw;
-
+    max-height: 100vh;
 }
 
 .rightmost {
-    min-height: 100%;
+    height: 100%;
+    overflow: scroll;
+    overflow-x: visible;
 
 }
 
@@ -99,18 +101,19 @@ body {
 
 .cardContainer {
     display: flex;
-    gap: 10px;
-    flex-wrap: warp;
+    gap: 25px;
+    flex-wrap: wrap;
     margin: 30px;
 }
 
 .spotifyPlaylists .card {
     width: 200px;
-    padding: 10px;
+    padding: 15px;
     border-radius: 5px;
     background-color: #181818;
     position: relative;
     transition: background-color .3s ease;
+    
 }
 
 .card>* {
@@ -120,6 +123,7 @@ body {
 
 .spotifyPlaylists .card img {
     width: 100%;
+    padding-top: 0px;
 
 }
 
@@ -143,11 +147,15 @@ body {
 }
 
 .play:hover {
-    top: 140px;
+    top: 130px;
     opacity: 1;
 }
 
-..card :hover {
-
+.card:hover {
     background: #272727;
+}
+
+.spotifyPlaylists .card img:hover {
+    box-shadow: 3px 3px 20px 3px #121212 ;
+    
 }
