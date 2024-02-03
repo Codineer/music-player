@@ -21,17 +21,6 @@ body {
 
 }
 
-.right {
-    width: 75vw;
-    max-height: 100vh;
-}
-
-.rightmost {
-    height: 100%;
-    overflow: scroll;
-    overflow-x: visible;
-
-}
 
 .home ul li {
     display: flex;
@@ -46,9 +35,16 @@ body {
     width: 25px;
 }
 
+.home {
+    height: 130px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
 
 .library {
-    min-height: 80vh;
+    /* min-height: 80vh; */
+    min-height: calc(99.5vh - 130px);
     position: relative;
     display: flex;
     flex-direction: column;
@@ -84,10 +80,30 @@ body {
 
 }
 
+.right {
+    width: 75vw;
+}
+
+.rightmost {
+    min-height: 100vh;
+    position: relative;
+
+
+}
+
 .header {
     display: flex;
     justify-content: space-between;
-    background-color: rgb(190, 173, 173);
+    align-items: center;
+}
+.buttons{
+    gap: 30px;
+    display: flex;
+    font-weight: 700;
+    font-size: 18px;
+    border: none;
+    outline: none;
+    cursor: pointer;
 }
 
 .header>* {
@@ -95,15 +111,54 @@ body {
 
 }
 
+.loginbtn {
+    font-weight: 700;
+    font-size: 18px;
+    border: none;
+    outline: none;
+    color: gray;
+    cursor: pointer;
+}
+
+
+.loginbtn:hover {   
+    color: rgb(255, 255, 255);
+    transform: scale(1.1);
+}
+
+.Signupbtn {
+    cursor: pointer;
+    font-size: 18px;
+    border: none;
+    outline: none;
+    color: black;
+    background-color: white;
+    padding: 10px 20px;
+    border-radius: 50px;
+}
+
+.Signupbtn:hover{
+ 
+    font-weight: 700;
+    transform: scale(1.1); 
+    
+}
+
+
 .spotifyPlaylists {
     padding: 16px;
+    
 }
 
 .cardContainer {
+    overflow-y: scroll;
+    max-height: 70vh;
     display: flex;
     gap: 25px;
     flex-wrap: wrap;
     margin: 30px;
+
+
 }
 
 .spotifyPlaylists .card {
@@ -113,7 +168,7 @@ body {
     background-color: #181818;
     position: relative;
     transition: background-color .3s ease;
-    
+
 }
 
 .card>* {
@@ -151,11 +206,21 @@ body {
     opacity: 1;
 }
 
+
 .card:hover {
     background: #272727;
 }
 
 .spotifyPlaylists .card img:hover {
-    box-shadow: 3px 3px 20px 3px #121212 ;
-    
+    box-shadow: 3px 3px 20px 3px #121212;
+
+}
+
+.playbar{
+    position: absolute;
+    bottom:0px ;
+    left: 0px;
+    background-color: rgb(70, 231, 70);
+    width: 100%;
+    padding: 12px;
 }
