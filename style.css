@@ -223,4 +223,12 @@ body {
     background-color: rgb(70, 231, 70);
     width: 100%;
     padding: 12px;
+    display: flex;
+    justify-content: center;
+    align-items:center ;
+    gap: 20px;
+}
+.playbar .songbuttons{
+    display: flex;
+    gap: 20px;
 }
