@@ -53,7 +53,7 @@
 /* For Webkit-based browsers (Chrome, Safari) */
 ::-webkit-scrollbar {
     width: 15px;
-    /* display: none; */
+    display: none;
     /* Width of the scrollbar */
 }
 

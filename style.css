@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poor+Story&family=Roboto:wght@700&display=swap');
 
 * {
     font-family: 'Roboto', sans-serif;
@@ -40,6 +40,7 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    
 }
 
 .library {
@@ -49,6 +50,7 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+
 }
 
 .heading {
@@ -64,8 +66,74 @@ body {
 .heading img {
     width: 25px;
 }
+.songList{
+    /* box-shadow: inset 0 6px 10px rgba(255, 255, 255, 0.732); */
+}
+.songList ul{
+    padding: 0px 25px;
+    overflow-y: scroll;
+    max-height: calc(((99.5vh - 130px)*70/100) - 20px);
+    /* max-height: calc(((99.5vh - 130px)*70/100) ); */
+
+}
+
+.songList ul li{
+    list-style-type: decimal;
+    display: grid;
+    grid-template-columns: 1fr 8fr 1.2fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 2px 20px;
+    cursor: pointer;
+    padding: 12px 12px;
+    transition: background-color 0.3s ease 0s;
+    border-radius: 7px;
+}
+.songList ul li:hover{
+    background-color:#272727;
+    
+
+}
+.songList .sname{
+    font-size: 14px;
+    font-weight: 400;
+    white-space: nowrap; /* Prevent text from wrapping to the next line */
+    overflow: hidden; /* Hide overflow content */
+    text-overflow: ellipsis;
+    /* animation: moveText 5s linear infinite; */
+}
+
+.songList .artist{
+    font-size: 11px;
+    font-weight:200;
+}
+
+.songList ul li img:first-child{
+    align-self: center;
+    width: 100%;
+    grid-row: 1/3;
+    grid-column: 1/2;
+    
+}
+.songList ul li .hplay{
+    align-self: center;
+    width: 100%;
+    grid-row: 1/3;
+    grid-column: 1/2;
+    display: none;
+    transition: all 3s ease;
+    
+}
+
+.songList ul li .alplay{
+    align-self: center;
+    width: 100%;
+    grid-row: 1/3;
+    grid-column: 3/4;
+    
+}
 
 .footer {
+
     display: flex;
     flex-wrap: wrap;
     font-size: 10px;
@@ -220,15 +288,27 @@ body {
     position: absolute;
     bottom:0px ;
     left: 0px;
-    background-color: rgb(70, 231, 70);
+    background-color: #dc9393;
     width: 100%;
     padding: 12px;
     display: flex;
     justify-content: center;
     align-items:center ;
     gap: 20px;
+    border-radius: 0 0 7px 7px;
+  
 }
 .playbar .songbuttons{
     display: flex;
     gap: 20px;
 }
+
+@keyframes moveText {
+    0% {
+      transform: translateX(0); /* Start from initial position */
+    }
+
+    100% {
+      transform: translateX(100%); /* Move the text to the left (negative value for continuous movement) */
+    }
+  }
