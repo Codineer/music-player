@@ -80,13 +80,16 @@ body {
 .songList ul li{
     list-style-type: decimal;
     display: grid;
-    grid-template-columns: 1fr 8fr 1.2fr;
+    grid-template-columns: 1fr 8fr 1fr;
     grid-template-rows: 1fr 1fr;
     gap: 2px 20px;
     cursor: pointer;
     padding: 12px 12px;
     transition: background-color 0.3s ease 0s;
     border-radius: 7px;
+}
+.songList ul li a{
+    display: none;
 }
 .songList ul li:hover{
     background-color:#272727;
@@ -288,19 +291,50 @@ body {
     position: absolute;
     bottom:0px ;
     left: 0px;
-    background-color: #dc9393;
+    background-color: #595454;
     width: 100%;
-    padding: 12px;
-    display: flex;
-    justify-content: center;
-    align-items:center ;
+    padding: 12px 32px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    /* justify-content: center;
+    align-items:center ; */
     gap: 20px;
     border-radius: 0 0 7px 7px;
-  
+    align-items: center;
 }
 .playbar .songbuttons{
     display: flex;
     gap: 20px;
+    justify-self: center;
+    align-self: center;
+}
+
+.playbar  .songinfo{
+    white-space: nowrap;
+    overflow-x: hidden;
+    text-overflow: ellipsis;
+}
+.playbar  .songtime{
+    justify-self: end;
+}
+
+.playbar .songbuttons img{
+    cursor: pointer;
+}
+.seekbar{
+    height: 4px;
+    width: 100%;
+    border: 1px solid red;
+    background: white;
+    position: absolute;
+    top: -3px;
+    
+}
+.seekbar .circle{
+    width: 100%;
+    background-color: red;
+    height:2px ;
+    transition: width 0.5s;
 }
 
 @keyframes moveText {
