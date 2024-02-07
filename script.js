@@ -1,6 +1,6 @@
 console.log("lets write javascript")
 let currentSong = new Audio();
-function playMusic(li,link) {
+function playMusic(li, link) {
     if (link == currentSong.src) {
         pauseResume()
     }
@@ -8,11 +8,10 @@ function playMusic(li,link) {
         currentSong.src = link;
         document.querySelector('.playbar').querySelector('.songinfo').innerText =
             li.querySelector('.sname').innerText;
-        document.querySelector('.songtime').innerText = "00:00/00:00"
-    
-        currentSong.play()
+        document.querySelector('.songtime').innerText = "0:00/0:00"
+        let playpromise = currentSong.play()
+        playpromise.then(() => document.querySelector("#play").src = "playing.svg")
 
-        document.querySelector("#play").src = "playing.svg"
     }
 
 }
@@ -20,7 +19,6 @@ function playMusic(li,link) {
 function pauseResume() {
     if (currentSong.paused) {
         currentSong.play()
-
         document.querySelector("#play").src = "playing.svg"
     }
     else {
@@ -67,27 +65,31 @@ async function getSongs() {
 function secondsToMinutes(seconds) {
     var minutes = Math.floor(seconds / 60);
     var remainingSeconds = seconds % 60;
-    // return minutes + ":" + (remainingSeconds < 10 ? "0" : "") + remainingSeconds;
-    return seconds
+    return minutes + ":" + (remainingSeconds < 10 ? "0" : "") + remainingSeconds;
 }
 
 function updateTime() {
-
+    
     let songtime = currentSong.currentTime
     let songduration = currentSong.duration
     let width = (songtime / songduration) * 100
-    document.querySelector(".circle").style.width = width + '%'
-    console.log("updateTime")
-    
-    document.querySelector(".songtime").innerHTML = `${secondsToMinutes(Math.floor(songtime))}/${secondsToMinutes(Math.floor(songduration))}`
+    if (!isNaN(songduration)) {
+        document.querySelector(".circle").style.width = width + '%'
+        console.log("updateTime")
+
+        document.querySelector(".songtime").innerHTML = `${secondsToMinutes(Math.floor(songtime))}/${secondsToMinutes(Math.floor(songduration))}`
+    }
 
 }
+
 async function main() {
 
     //geting list
     let songs = await getSongs()
     console.log(songs)
     let songli = document.querySelector('.songList').querySelectorAll('li')
+    playMusic(songli[0], songli[0].querySelector(".sname").getAttribute('dataComment'))
+
     songli.forEach((li) => {
         let songlink = li.querySelector(".sname").getAttribute('dataComment')
         let songimgplay = li.querySelector('.hplay')
@@ -103,18 +105,19 @@ async function main() {
             songimgplay.style.display = "none";
 
         });
-        li.addEventListener("click", function (event) {
-            playMusic(li,songlink)
+        li.addEventListener("click", function () {
+            playMusic(li, songlink)
         })
-        // playMusic(li,songlink)
-       
+
 
     })
 
     let playbutton = document.querySelector('#play')
     playbutton.addEventListener("click", pauseResume);
     currentSong.addEventListener('timeupdate', updateTime);
-
+    document.querySelector('.seekbar').addEventListener('click', e => {
+        console.log(currentSong.currentTime=(((e.offsetX+1)/(parseInt(document.querySelector('.seekbar').getBoundingClientRect().width)))*currentSong.duration));
+    })
 
 }
 

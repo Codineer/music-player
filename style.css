@@ -322,6 +322,7 @@ body {
     cursor: pointer;
 }
 .seekbar{
+    cursor: pointer;
     height: 4px;
     width: 100%;
     border: 1px solid red;
