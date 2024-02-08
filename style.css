@@ -30,7 +30,10 @@ body {
     padding-top: 14px;
     font-weight: bold;
 }
-
+.home .logo{
+    display: flex;
+    justify-content: space-between;
+}
 .home ul li img {
     width: 25px;
 }
@@ -167,6 +170,10 @@ body {
     justify-content: space-between;
     align-items: center;
 }
+.nav{
+    display: flex;
+}
+
 .buttons{
     gap: 30px;
     display: flex;
@@ -182,6 +189,10 @@ body {
 
 }
 
+.hamburger{
+    display: none;
+    padding-right:15px;
+}
 .loginbtn {
     font-weight: 700;
     font-size: 18px;
@@ -272,21 +283,6 @@ body {
 
 }
 
-.play:hover {
-    top: 130px;
-    opacity: 1;
-}
-
-
-.card:hover {
-    background: #272727;
-}
-
-.spotifyPlaylists .card img:hover {
-    box-shadow: 3px 3px 20px 3px #121212;
-
-}
-
 .playbar{
     position: absolute;
     bottom:0px ;
@@ -346,4 +342,57 @@ body {
     100% {
       transform: translateX(100%); /* Move the text to the left (negative value for continuous movement) */
     }
+  }
+
+  @media screen and (max-width: 1400px) {
+    .left{
+        background-color: red;
+        position: absolute;
+        left: -100%;
+        transition: all .7s ease;
+        z-index: 1;
+        width: 300px;
+        margin: 0px !important;
+        height: 100vh;
+        
+    }
+    .home{
+        padding: 20px !important;
+        height: auto;
+    }
+    .library{
+        min-height: calc(100% - 140.8px);
+    }
+    .heading {
+        padding: 15px 14px;
+    
+    }
+    .songList ul{
+        padding: 0px 10px;
+        overflow-y: scroll;
+        /* max-height: calc(((100% - 140px)*0.6)); */
+        max-height: 300px
+        /* max-height: calc(((99.5vh - 130px)*70/100) ); */
+    
+    }
+    .right{
+        width: 100% ;
+    }
+    .container{
+        padding: 0px;
+    }
+    .rightmost{
+        margin: 0px !important;
+        
+    }
+    .playbar{
+        border-radius: 0px;
+    }
+    .cardContainer{
+        justify-content: center;
+    }
+    .hamburger{
+        display: block;
+    }
+    
   }

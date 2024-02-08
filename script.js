@@ -118,6 +118,28 @@ async function main() {
     document.querySelector('.seekbar').addEventListener('click', e => {
         console.log(currentSong.currentTime=(((e.offsetX+1)/(parseInt(document.querySelector('.seekbar').getBoundingClientRect().width)))*currentSong.duration));
     })
+    document.querySelector('.card').addEventListener('mouseenter',(event)=>{
+        event.target.style.background="#272727"
+        event.target.querySelector('img').style.boxShadow="3px 3px 20px 3px #121212"
+        event.target.querySelector('.play').style.top="130px"
+        event.target.querySelector('.play').style.opacity="1"
+
+    })
+    document.querySelector('.card').addEventListener('mouseleave',(event)=>{
+        event.target.style.background="#181818"
+        event.target.querySelector('img').style.boxShadow="0px 0px 0px 0px #121212"
+        event.target.querySelector('.play').style.top="150px"
+        event.target.querySelector('.play').style.opacity="0"
+
+    })
+
+    // add an event listener for hamburger
+    document.querySelector(".hamburger").addEventListener('click',(event)=>{
+        document.querySelector(".left").style.left="0px"
+    })
+    document.querySelector(".cross").addEventListener('click',(event)=>{
+        document.querySelector(".left").style.left="-100%"
+    })
 
 }
 
