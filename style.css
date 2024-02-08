@@ -413,11 +413,7 @@ body {
     .hamburger {
         display: block;
     }
-
-    .playbar {
-        border-radius: 0px;
-    }
-
+    
     .cardContainer {
         justify-content: center;
         margin: 30px 0px ;
@@ -430,6 +426,7 @@ body {
     }
 
     .playbar {
+        border-radius: 0px;
         padding: 20px 22px;
     }
 }
