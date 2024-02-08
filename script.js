@@ -1,11 +1,14 @@
 console.log("lets write javascript")
 let currentSong = new Audio();
-function playMusic(li, link) {
+let songrecord;
+let currentsongindex;
+function playMusic(li, link,currentsongi) {
     if (link == currentSong.src) {
         pauseResume()
     }
     else {
         currentSong.src = link;
+        currentsongindex  = currentsongi
         document.querySelector('.playbar').querySelector('.songinfo').innerText =
             li.querySelector('.sname').innerText;
         document.querySelector('.songtime').innerText = "0:00/0:00"
@@ -36,7 +39,7 @@ async function addliinlibrary(tds) {
             let li = document.createElement("li")
             li.innerHTML = `
             <img src="icon.svg" alt="">
-            <div class="sname" dataComment=${tds[i].href}>
+            <div class="sname" dataComment=${tds[i].href} >
                 ${songname}
             </div>
             <a></a>
@@ -67,7 +70,25 @@ function secondsToMinutes(seconds) {
     var remainingSeconds = seconds % 60;
     return minutes + ":" + (remainingSeconds < 10 ? "0" : "") + remainingSeconds;
 }
+function playnextsong(){
+    console.log(currentsongindex)
+    console.log(songrecord.length)
+    if ((currentsongindex+1)<songrecord.length){
+        playMusic(songrecord[currentsongindex+1],songrecord[currentsongindex+1].querySelector(".sname").getAttribute('dataComment'),currentsongindex+1)
+    }
+    else{
+        playMusic(songrecord[0],songrecord[0].querySelector(".sname").getAttribute('dataComment'),0)
+    }
+}
 
+function playprevioussong(){
+    if ((currentsongindex-1)>=0){
+        playMusic(songrecord[currentsongindex-1],songrecord[currentsongindex-1].querySelector(".sname").getAttribute('dataComment'),currentsongindex-1)
+    }
+    else{
+        playMusic(songrecord[songrecord.length-1],songrecord[songrecord.length-1].querySelector(".sname").getAttribute('dataComment'),songrecord.length-1)
+    }
+}
 function updateTime() {
     
     let songtime = currentSong.currentTime
@@ -78,9 +99,14 @@ function updateTime() {
         console.log("updateTime")
 
         document.querySelector(".songtime").innerHTML = `${secondsToMinutes(Math.floor(songtime))}/${secondsToMinutes(Math.floor(songduration))}`
+        if (songduration===songtime){
+            playnextsong()
+        }
     }
 
 }
+
+
 
 async function main() {
 
@@ -88,9 +114,10 @@ async function main() {
     let songs = await getSongs()
     console.log(songs)
     let songli = document.querySelector('.songList').querySelectorAll('li')
-    playMusic(songli[0], songli[0].querySelector(".sname").getAttribute('dataComment'))
+    songrecord=songli
+    playMusic(songli[0], songli[0].querySelector(".sname").getAttribute('dataComment'),0)
 
-    songli.forEach((li) => {
+    songli.forEach((li,index) => {
         let songlink = li.querySelector(".sname").getAttribute('dataComment')
         let songimgplay = li.querySelector('.hplay')
         li.addEventListener('mouseover', function () {
@@ -106,7 +133,7 @@ async function main() {
 
         });
         li.addEventListener("click", function () {
-            playMusic(li, songlink)
+            playMusic(li, songlink,index)
         })
 
 
@@ -114,6 +141,11 @@ async function main() {
 
     let playbutton = document.querySelector('#play')
     playbutton.addEventListener("click", pauseResume);
+    let nextbut=document.querySelector('#next')
+    nextbut.addEventListener("click", playnextsong);
+    let pervbut=document.querySelector('#previous')
+    pervbut.addEventListener("click", playprevioussong);
+
     currentSong.addEventListener('timeupdate', updateTime);
     document.querySelector('.seekbar').addEventListener('click', e => {
         console.log(currentSong.currentTime=(((e.offsetX+1)/(parseInt(document.querySelector('.seekbar').getBoundingClientRect().width)))*currentSong.duration));
@@ -140,8 +172,8 @@ async function main() {
     document.querySelector(".cross").addEventListener('click',(event)=>{
         document.querySelector(".left").style.left="-100%"
     })
-
+    console.log(songrecord)
 }
 
 main()
-// alert(" Application still in development phase some features may not be available\n-Utkarsh\nDevelopment Team")
+alert(" Application still in development phase some features may not be available\n-Utkarsh\nDevelopment Team")
