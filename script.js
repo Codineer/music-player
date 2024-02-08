@@ -121,14 +121,14 @@ async function main() {
     document.querySelector('.card').addEventListener('mouseenter',(event)=>{
         event.target.style.background="#272727"
         event.target.querySelector('img').style.boxShadow="3px 3px 20px 3px #121212"
-        event.target.querySelector('.play').style.top="130px"
+        event.target.querySelector('.play').style.bottom="8%"
         event.target.querySelector('.play').style.opacity="1"
 
     })
     document.querySelector('.card').addEventListener('mouseleave',(event)=>{
         event.target.style.background="#181818"
         event.target.querySelector('img').style.boxShadow="0px 0px 0px 0px #121212"
-        event.target.querySelector('.play').style.top="150px"
+        event.target.querySelector('.play').style.bottom="2%"
         event.target.querySelector('.play').style.opacity="0"
 
     })
@@ -144,3 +144,4 @@ async function main() {
 }
 
 main()
+// alert(" Application still in development phase some features may not be available\n-Utkarsh\nDevelopment Team")
