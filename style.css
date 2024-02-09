@@ -305,8 +305,8 @@ body {
     width: 100%;
     padding: 12px 32px;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 20px;
+    grid-template-columns: 1fr 1fr 1fr auto;
+    justify-content: space-between;
     border-radius: 0 0 7px 7px;
     align-items: center;
 }
@@ -323,11 +323,25 @@ body {
     overflow-x: hidden;
     text-overflow: ellipsis;
 }
-
-.playbar .songtime {
-    justify-self: end;
+.playbar .leftplaybar {
+    justify-content: end;
+    align-items: center;
+    display: flex;
+    gap: 15px;
 }
+.playbar .leftplaybar .volume {
+   display: flex;
+   position: relative;
+}
+.playbar .leftplaybar .volumeseekbar{
+    position: absolute;
+    height: 80px;
+    width: 4px;
+    border: 1px solid rgb(255, 255, 255);
+    left: 50%;
+    bottom: 130%;
 
+}
 .playbar .songbuttons img {
     cursor: pointer;
 }
@@ -427,6 +441,9 @@ body {
 
     .playbar {
         border-radius: 0px;
-        padding: 20px 22px;
+        padding: 20px 15px;
+    }
+    .playbar .leftplaybar {
+        gap:5px;
     }
 }
