@@ -1,5 +1,6 @@
 console.log("lets write javascript")
 let currentSong = new Audio();
+currentSong.volume = 0;
 let songrecord;
 let currentsongindex;
 function playMusic(li, link, currentsongi) {
@@ -36,7 +37,6 @@ async function addliinlibrary(tds) {
     document.querySelector('.songList').querySelector('ul').innerHTML = "";
     for (let i = 0; i < tds.length; i++) {
         if (tds[i].href.endsWith(".mp3")) {
-            count += 1
             let songname = tds[i].querySelector('.name').innerText
             let li = document.createElement("li")
             li.innerHTML = `
@@ -65,7 +65,7 @@ async function addliinlibrary(tds) {
             });
             li.addEventListener("click", function () {
                 let songlink = li.querySelector(".sname").getAttribute('dataComment')
-                playMusic(li, songlink, count)
+                playMusic(li, songlink, count++)
             })
             document.querySelector('.songList').querySelector('ul').appendChild(li)
             song.push(tds[i].href)
@@ -78,7 +78,7 @@ async function addliinlibrary(tds) {
 }
 async function getSongs(album) {
 
-    let a = await fetch(`http://127.0.0.1:5500/${album}/`)
+    let a = await fetch(`http://127.0.0.1:5500/albums/${album}/`)
     let response = await a.text()
     let div = document.createElement("div")
     div.innerHTML = response;
@@ -124,7 +124,6 @@ function updateTime() {
             playnextsong()
         }
     }
-
 }
 
 function changeVolume(offsetY) {
@@ -135,12 +134,28 @@ function changeVolume(offsetY) {
 
 }
 
+async function displayalbums(){
+    let albums = await fetch('http://127.0.0.1:5500/albums')
+    let response =await albums.text()
+    let div =document.createElement('div')
+    div.innerHTML = response
+    let alist=[];
+    div.querySelectorAll('a')
+    .forEach(element => {
+        // console.log(element.href)
+        if (element.href.startsWith("http://127.0.0.1:5500/albums/")){
+            alist.push(element.href)
+        }
+    });
+    
+    console.log(alist)
+}
 async function main() {
 
     //geting list
-    let songs = await getSongs("songs")
+    let songs = await getSongs("phonk")
     console.log(songs)
-
+    await displayalbums()
 
     let playbutton = document.querySelector('#play')
     playbutton.addEventListener("click", pauseResume);
@@ -198,7 +213,7 @@ async function main() {
     console.log(songrecord)
 
     setTimeout(() => {
-        getSongs("songs2")
+        getSongs("relax")
     }, 4000);
 
 }
