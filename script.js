@@ -1,7 +1,6 @@
-// import req
-console.log("lets write javascript")
+
 let currentSong = new Audio();
-currentSong.volume = 0;
+// currentSong.volume = 0;
 let songrecord;
 let currentsongindex;
 function playMusic(li, link, currentsongi) {
@@ -93,8 +92,6 @@ function secondsToMinutes(seconds) {
     return minutes + ":" + (remainingSeconds < 10 ? "0" : "") + remainingSeconds;
 }
 function playnextsong() {
-    console.log(currentsongindex)
-    console.log(songrecord.length)
     if ((currentsongindex + 1) < songrecord.length) {
         playMusic(songrecord[currentsongindex + 1], songrecord[currentsongindex + 1].querySelector(".sname").getAttribute('dataComment'), currentsongindex + 1)
     }
@@ -118,7 +115,6 @@ function updateTime() {
     let width = (songtime / songduration) * 100
     if (!isNaN(songduration)) {
         document.querySelector(".circle").style.width = width + '%'
-        console.log("updateTime")
 
         document.querySelector(".songtime").innerHTML = `${secondsToMinutes(Math.floor(songtime))}/${secondsToMinutes(Math.floor(songduration))}`
         if (songduration === songtime) {
@@ -130,7 +126,6 @@ function updateTime() {
 function changeVolume(offsetY) {
     offsetY = Math.abs(offsetY)
     document.querySelector('.currentvolume').style.height = `${((80 - (offsetY)) / 80) * 100}%`
-    console.log(document.querySelector('.currentvolume').style.height)
     currentSong.volume = ((80 - (offsetY)) / 80)
 
 }
@@ -149,7 +144,6 @@ async function displayalbums() {
             }
         });
     let container = document.querySelector(".cardContainer")
-    console.log(alist)
     for (let element of alist){
     
         let card = document.createElement("div")
@@ -201,7 +195,6 @@ async function main() {
 
     //geting list
     let songs = await getSongs("http://127.0.0.1:5500/albums/phonk")
-    console.log(songs)
     await displayalbums()
 
     let playbutton = document.querySelector('#play')
@@ -213,7 +206,7 @@ async function main() {
 
     currentSong.addEventListener('timeupdate', updateTime);
     document.querySelector('.seekbar').addEventListener('click', e => {
-        console.log(currentSong.currentTime = (((e.offsetX + 1) / (parseInt(document.querySelector('.seekbar').getBoundingClientRect().width))) * currentSong.duration));
+        currentSong.currentTime = (((e.offsetX + 1) / (parseInt(document.querySelector('.seekbar').getBoundingClientRect().width))) * currentSong.duration);
     })
     document.querySelectorAll('.card').forEach(element => {
         element.addEventListener('mouseenter', (event) => {
@@ -260,10 +253,10 @@ async function main() {
     document.querySelector(".cross").addEventListener('click', (event) => {
         document.querySelector(".left").style.left = "-100%"
     })
-    console.log(songrecord)
+
 
 }
 
 main()
 
-// alert("Application(Prototype) still in development phase some features may not be available.\n-Utkarsh,Development Team")
+alert("Application(Prototype) still in development phase some features may not be available.\n-Utkarsh,Development Team")
