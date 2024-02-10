@@ -14,7 +14,6 @@ function playMusic(li, link, currentsongi) {
         document.querySelector('.songtime').innerText = "0:00/0:00"
         let playpromise = currentSong.play()
         playpromise.then(() => document.querySelector("#play").src = "playing.svg")
-
     }
 
 }
@@ -77,9 +76,9 @@ async function addliinlibrary(tds) {
     playMusic(songli[0], songli[0].querySelector(".sname").getAttribute('dataComment'), 0)
     return song
 }
-async function getSongs() {
+async function getSongs(album) {
 
-    let a = await fetch("http://127.0.0.1:5500/songs/")
+    let a = await fetch(`http://127.0.0.1:5500/${album}/`)
     let response = await a.text()
     let div = document.createElement("div")
     div.innerHTML = response;
@@ -139,7 +138,7 @@ function changeVolume(offsetY) {
 async function main() {
 
     //geting list
-    let songs = await getSongs()
+    let songs = await getSongs("songs")
     console.log(songs)
 
 
@@ -198,7 +197,9 @@ async function main() {
     })
     console.log(songrecord)
 
-
+    setTimeout(() => {
+        getSongs("songs2")
+    }, 4000);
 
 }
 
