@@ -33,6 +33,7 @@ function pauseResume() {
 
 async function addliinlibrary(tds) {
     let song = []
+    document.querySelector('.songList').querySelector('ul').innerHTML="";
     for (let i = 0; i < tds.length; i++) {
         if (tds[i].href.endsWith(".mp3")) {
             let songname = tds[i].querySelector('.name').innerText
@@ -106,7 +107,13 @@ function updateTime() {
 
 }
 
-
+function changeVolume(offsetY){
+    offsetY=Math.abs(offsetY)
+    document.querySelector('.currentvolume').style.height=`${((80-(offsetY))/80)*100}%`
+    console.log(document.querySelector('.currentvolume').style.height)
+    currentSong.volume=((80-(offsetY))/80)
+    
+}
 
 async function main() {
 
@@ -165,6 +172,25 @@ async function main() {
 
     })
 
+    //add event listeners to volume slider
+    
+    document.querySelector('.volumeimg').addEventListener("click",(event)=>{
+        let seekbar=document.querySelector('.volumeseekbar')
+
+        if (seekbar.style.display==='block'){
+        seekbar.style.display="none"}
+        else{
+            seekbar.style.display="block"
+        }
+        event.stopPropagation()
+        
+    })
+     document.querySelector('.volumeseekbar').addEventListener("click",(event)=>{
+        const mainParentRect = event.currentTarget.getBoundingClientRect();
+        const mainParentOffsetY = event.clientY - mainParentRect.top;
+        changeVolume(mainParentOffsetY)
+     })
+
     // add an event listener for hamburger
     document.querySelector(".hamburger").addEventListener('click',(event)=>{
         document.querySelector(".left").style.left="0px"
@@ -176,4 +202,4 @@ async function main() {
 }
 
 main()
-alert(" Application still in development phase some features may not be available\n-Utkarsh\nDevelopment Team")
+// alert("Application(Prototype) still in development phase some features may not be available.\n-Utkarsh,Development Team")
