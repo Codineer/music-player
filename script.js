@@ -131,7 +131,7 @@ function changeVolume(offsetY) {
 }
 
 async function displayalbums() {
-    let albums = await fetch('http://127.0.0.1:5500/albums')
+    let albums = await fetch('/albums')
     let response = await albums.text()
     let div = document.createElement('div')
     div.innerHTML = response
@@ -139,7 +139,7 @@ async function displayalbums() {
     div.querySelectorAll('a')
         .forEach(element => {
             // console.log(element.href)
-            if (element.href.startsWith("http://127.0.0.1:5500/albums/")) {
+            if (element.href.startsWith("/albums/")) {
                 alist.push(element.href)
             }
         });
@@ -194,7 +194,7 @@ async function displayalbums() {
 async function main() {
 
     //geting list
-    let songs = await getSongs("http://127.0.0.1:5500/albums/phonk")
+    let songs = await getSongs("/albums/phonk")
     await displayalbums()
 
     let playbutton = document.querySelector('#play')
